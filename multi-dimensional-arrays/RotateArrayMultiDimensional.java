@@ -1,6 +1,6 @@
 import java.util.ArrayList;
 
-public class RotateArray {
+public class RotateArrayMultiDimensional {
     public static void main(String args[]) {
         int arr[][] = {
             {31, 32, 228, 333},
