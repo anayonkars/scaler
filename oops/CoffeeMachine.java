@@ -2,9 +2,9 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Scanner;
 
-public class Coffee {
+public class CoffeeMachine {
   public static void main(String args[]) {
-    new Coffee().initialize();
+    new CoffeeMachine().initialize();
   }
 
   private ArrayList<String> menu = new ArrayList<>();
