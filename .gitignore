@@ -1,2 +1,6 @@
 .vscode/
 */*.class
+/out/production/scaler/*
+*.iml
+*.xml
+.idea
