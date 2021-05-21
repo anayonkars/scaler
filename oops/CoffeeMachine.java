@@ -75,7 +75,6 @@ public class CoffeeMachine {
     double totalCost = 0;
     if (isDispense) {
       System.out.println("Dispensing...");
-      Beverage beverage = new Beverage();
       for (int i = 0; i < userInputs.size(); i++) {
         String curr = userInputs.get(i);
         String[] splitInput = curr.split(" ", 2);
@@ -89,22 +88,22 @@ public class CoffeeMachine {
           double cost = 0;
           switch (currIngr) {
             case "Coffee":
-              cost = selectedQuantity * beverage.getCoffeeCost();
+              cost = selectedQuantity * Beverage.COFFEE_COST;
               break;
             case "Cream":
-              cost = selectedQuantity * beverage.getCreamCost();
+              cost = selectedQuantity * Beverage.CREAM_COST;
               break;
             case "Sugar":
-              cost = selectedQuantity * beverage.getSugarCost();
+              cost = selectedQuantity * Beverage.SUGAR_COST;
               break;
             case "Water":
               cost = 0;
               break;
             case "Chocolate":
-              cost = selectedQuantity * beverage.getChocolateCost();
+              cost = selectedQuantity * Beverage.CHOCOLATE_COST;
               break;
             case "Milk":
-              cost = selectedQuantity * beverage.getMilkCost();
+              cost = selectedQuantity * Beverage.MILK_COST;
               break;
             default:
               break;
@@ -130,28 +129,27 @@ public class CoffeeMachine {
 
   private ArrayList<String> displayIngredients(String type) {
     ArrayList<String> ingredients = getIngredients(type);
-    Beverage beverage = new Beverage();
     for (int i = 0; i < ingredients.size(); i++) {
       String curr = ingredients.get(i);
       double cost = 0;
       switch (curr) {
         case "Coffee":
-          cost = beverage.getCoffeeCost();
+          cost = Beverage.COFFEE_COST;
           break;
         case "Cream":
-          cost = beverage.getCreamCost();
+          cost = Beverage.CREAM_COST;
           break;
         case "Sugar":
-          cost = beverage.getSugarCost();
+          cost = Beverage.SUGAR_COST;
           break;
         case "Water":
           cost = 0;
           break;
         case "Chocolate":
-          cost = beverage.getChocolateCost();
+          cost = Beverage.CHOCOLATE_COST;
           break;
         case "Milk":
-          cost = beverage.getMilkCost();
+          cost = Beverage.MILK_COST;
           break;
         default:
           break;

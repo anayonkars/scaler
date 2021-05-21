@@ -2,15 +2,12 @@ import java.util.ArrayList;
 import java.util.Collections;
 
 class Beverage {
-  private static final int SUGAR_COST = 25;
-  private static final int CREAM_COST = 25;
-  private static final int COFFEE_COST = 75;
-  private static final int MILK_COST = 50;
-  private static final int CHOCOLATE_COST = 50;
+  public static final int SUGAR_COST = 25;
+  public static final int CREAM_COST = 25;
+  public static final int COFFEE_COST = 75;
+  public static final int MILK_COST = 50;
+  public static final int CHOCOLATE_COST = 50;
   private final ArrayList<String> INGREDIENTS = new ArrayList<>();
-
-  Beverage() {
-  }
 
   Beverage(int A, int B, int C, int D) {
     for (int i = 1; i <= 4; i++) {
