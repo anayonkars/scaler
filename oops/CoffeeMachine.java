@@ -3,9 +3,29 @@ import java.util.Scanner;
 
 public class CoffeeMachine {
   private final ArrayList<String> menu = new ArrayList<>();
-  private final Beverage americano = new Beverage();
-  private final Beverage blackCoffee = new Beverage();
-  private final Beverage cafeMocha = new Beverage();
+  private final Beverage americano;
+  private final Beverage blackCoffee;
+  private final Beverage cafeMocha;
+
+  {
+    americano = Beverage.BeverageBuilder.aBeverage()
+            .withName("Americano")
+            .withCoffee(3)
+            .withSugar(1)
+            .withMilk(1)
+            .build();
+
+    blackCoffee = Beverage.BeverageBuilder.aBeverage()
+            .withName("Black Coffee")
+            .withCoffee(3)
+            .build();
+
+    cafeMocha = Beverage.BeverageBuilder.aBeverage()
+            .withName("Cafe Mocha")
+            .withCoffee(3)
+            .withSugar(1)
+            .build();
+  }
 
   public static final String CUSTOM = "Custom";
 

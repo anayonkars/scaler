@@ -25,6 +25,14 @@ class Beverage {
     INGREDIENTS.add("Milk");*/
   }
 
+  @Override
+  public String toString() {
+    return "Beverage{" +
+            "recipe=" + recipe +
+            ", name='" + name + '\'' +
+            '}';
+  }
+
   public Map<Ingredient, Integer> getRecipe() {
     return recipe;
   }
