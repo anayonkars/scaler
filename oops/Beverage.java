@@ -1,5 +1,7 @@
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.HashMap;
+import java.util.Map;
 
 class Beverage {
   public static final int SUGAR_COST = 25;
@@ -13,6 +15,7 @@ class Beverage {
   private int creamQuantity;
   private int milkQuantity;
   private int coffeeQuantity;
+  private final Map<Ingredient, Integer> recipe = new HashMap<>();
 
   Beverage() {
     INGREDIENTS.add("Coffee");
@@ -22,6 +25,10 @@ class Beverage {
     Collections.sort(INGREDIENTS);
     /*INGREDIENTS.add("Chocolate");
     INGREDIENTS.add("Milk");*/
+  }
+
+  public Map<Ingredient, Integer> getRecipe() {
+    return recipe;
   }
 
   public int getSugarQuantity() {
@@ -84,6 +91,10 @@ class Beverage {
       beverage.milkQuantity = this.milkQuantity;
       beverage.creamQuantity = this.creamQuantity;
       beverage.coffeeQuantity = this.coffeeQuantity;
+      beverage.recipe.put(Ingredient.SUGAR, sugarQuantity);
+      beverage.recipe.put(Ingredient.MILK, milkQuantity);
+      beverage.recipe.put(Ingredient.CREAM, creamQuantity);
+      beverage.recipe.put(Ingredient.COFFEE, coffeeQuantity);
       return beverage;
     }
   }
