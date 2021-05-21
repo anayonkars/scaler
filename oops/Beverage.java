@@ -9,7 +9,7 @@ class Beverage {
   public static final int CHOCOLATE_COST = 50;
   private final ArrayList<String> INGREDIENTS = new ArrayList<>();
 
-  Beverage(int A, int B, int C, int D) {
+  Beverage() {
     INGREDIENTS.add("Coffee");
     INGREDIENTS.add("Cream");
     INGREDIENTS.add("Sugar");

@@ -3,9 +3,9 @@ import java.util.Scanner;
 
 public class CoffeeMachine {
   private final ArrayList<String> menu = new ArrayList<>();
-  private final Beverage americano = new Beverage(1, 2, 3, 6);
-  private final Beverage blackCoffee = new Beverage(1, 2, 3, 4);
-  private final Beverage cafeMocha = new Beverage(1, 2, 3, 5);
+  private final Beverage americano = new Beverage();
+  private final Beverage blackCoffee = new Beverage();
+  private final Beverage cafeMocha = new Beverage();
 
   public static void main(String[] args) {
     new CoffeeMachine().initialize();
