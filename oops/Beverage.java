@@ -24,6 +24,22 @@ class Beverage {
     INGREDIENTS.add("Milk");*/
   }
 
+  public int getSugarQuantity() {
+    return sugarQuantity;
+  }
+
+  public int getCreamQuantity() {
+    return creamQuantity;
+  }
+
+  public int getMilkQuantity() {
+    return milkQuantity;
+  }
+
+  public int getCoffeeQuantity() {
+    return coffeeQuantity;
+  }
+
   public ArrayList<String> getIngredients() {
     return INGREDIENTS;
   }
