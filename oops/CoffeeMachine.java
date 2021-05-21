@@ -7,6 +7,12 @@ public class CoffeeMachine {
   private final Beverage blackCoffee = new Beverage();
   private final Beverage cafeMocha = new Beverage();
 
+  {
+    menu.add(AMERICANO);
+    menu.add(BLACK_COFFEE);
+    menu.add(CAFE_MOCHA);
+  }
+
   public static void main(String[] args) {
     new CoffeeMachine().initialize();
   }
@@ -19,7 +25,7 @@ public class CoffeeMachine {
     Scanner scannerObj = new Scanner(System.in);
     displayMenu();
     int selectedCoffee = scannerObj.nextInt();
-    ArrayList<String> menu = getMenu();
+    ArrayList<String> menu = this.menu;
     String coffeeToDispense = "";
     for (int i = 0; i < menu.size(); i++) {
       String curr = menu.get(i);
@@ -120,7 +126,7 @@ public class CoffeeMachine {
   }
 
   private void displayMenu() {
-    ArrayList<String> menu = getMenu();
+    ArrayList<String> menu = this.menu;
     for (int i = 0; i < menu.size(); i++) {
       String curr = menu.get(i);
       System.out.println(i + 1 + ". " + curr + " (Press " + (i + 1) + " for " + curr + ")");
@@ -159,13 +165,6 @@ public class CoffeeMachine {
           + " and space then the quantity you prefer)");
     }
     return ingredients;
-  }
-
-  public ArrayList<String> getMenu() {
-    menu.add(AMERICANO);
-    menu.add(BLACK_COFFEE);
-    menu.add(CAFE_MOCHA);
-    return menu;
   }
 
   public ArrayList<String> getIngredients(String type) {
