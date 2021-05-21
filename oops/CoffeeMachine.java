@@ -31,6 +31,7 @@ public class CoffeeMachine {
     custom = Beverage.BeverageBuilder.aBeverage()
             .withName("Custom")
             .build();
+
   }
 
   public static final String CUSTOM = "Custom";
@@ -55,13 +56,19 @@ public class CoffeeMachine {
     displayMenu();
     int selectedCoffee = scannerObj.nextInt();
     List<Beverage> menu = this.menu;
-    String coffeeToDispense = "";
-    coffeeToDispense = menu.get(selectedCoffee - 1).getName();
-
-    System.out.println("You selected " + coffeeToDispense);
-    System.out.println("Please select ingredients.");
-    System.out.println("Press Q/q to quit, D/d to dispense, R/r to restock");
-    ArrayList<String> ingredients = displayIngredients(coffeeToDispense);
+    Beverage beverageToDispense = menu.get(selectedCoffee - 1);
+    double totalCost = 0;
+    boolean isCustomBeverage = false;
+    if (CUSTOM.equals(beverageToDispense.getName())) {
+      isCustomBeverage = true;
+      System.out.println("Please select ingredients.");
+      displayIngredients();
+      System.out.println("Press Q/q to quit, D/d to dispense, R/r to restock");
+    } else {
+      System.out.println("You selected " + beverageToDispense.getName() + " : " + beverageToDispense);
+      System.out.println("Press Q/q to quit, D/d to dispense, R/r to restock");
+      totalCost = CostCalculator.calculateCost(beverageToDispense);
+    }
 
     ArrayList<String> userInputs = new ArrayList<>();
     boolean isQuit = false, isRestock = false, isDispense = false;
@@ -90,6 +97,7 @@ public class CoffeeMachine {
       if (isRestock) {
         System.out.println("Input cleared.");
         userInputs.clear();
+        isRestock = false;
       }
       if (isQuit || isDispense) {
         break;
@@ -101,51 +109,41 @@ public class CoffeeMachine {
       scannerObj.close();
     }
 
-    double totalCost = 0;
+
     if (isDispense) {
       System.out.println("Dispensing...");
-      for (int i = 0; i < userInputs.size(); i++) {
-        String curr = userInputs.get(i);
-        String[] splitInput = curr.split(" ", 2);
-        int selectedIngredient = Integer.valueOf(splitInput[0]);
-        int selectedQuantity = Integer.valueOf(splitInput[1]);
-        for (int j = 0; j < ingredients.size(); j++) {
-          String currIngr = "";
-          if (selectedIngredient == j + 1) {
-            currIngr = ingredients.get(j);
-          }
-          double cost = 0;
-          switch (currIngr) {
-            case "Coffee":
-              cost = selectedQuantity * Beverage.COFFEE_COST;
-              break;
-            case "Cream":
-              cost = selectedQuantity * Beverage.CREAM_COST;
-              break;
-            case "Sugar":
-              cost = selectedQuantity * Beverage.SUGAR_COST;
-              break;
-            case "Water":
-              cost = 0;
-              break;
-            case "Chocolate":
-              cost = selectedQuantity * Beverage.CHOCOLATE_COST;
-              break;
-            case "Milk":
-              cost = selectedQuantity * Beverage.MILK_COST;
-              break;
-            default:
-              break;
-          }
-          totalCost += cost;
-        }
+      if (isCustomBeverage) {
+        beverageToDispense = buildCustomBeverage(userInputs);
+        totalCost = CostCalculator.calculateCost(beverageToDispense);
+      }
+      if (totalCost > 0) {
+        System.out.println("Please pay " + totalCost / 100 + "$");
       }
     }
 
-    if (totalCost > 0) {
-      System.out.println("Please pay " + totalCost / 100 + "$");
-    }
     scannerObj.close();
+  }
+
+  private Beverage buildCustomBeverage(ArrayList<String> userInputs) {
+    Beverage.BeverageBuilder beverageBuilder = Beverage.BeverageBuilder.aBeverage();
+    for (String input : userInputs) {
+      String[] line = input.split(" ");
+      Integer beverage = Integer.valueOf(line[0]);
+      Integer quantity = Integer.valueOf(line[1]);
+      switch (beverage) {
+        case 1:
+          beverageBuilder.withCoffee(quantity);
+          break;
+        case 2:
+          beverageBuilder.withCream(quantity);
+          break;
+        case 3:
+          beverageBuilder.withSugar(quantity);
+          break;
+        default:
+      }
+    }
+    return beverageBuilder.build();
   }
 
   private void displayMenu() {
@@ -157,56 +155,13 @@ public class CoffeeMachine {
     }
   }
 
-  private ArrayList<String> displayIngredients(String type) {
-    ArrayList<String> ingredients = getIngredients(type);
-    for (int i = 0; i < ingredients.size(); i++) {
-      String curr = ingredients.get(i);
-      double cost = 0;
-      switch (curr) {
-        case "Coffee":
-          cost = Beverage.COFFEE_COST;
-          break;
-        case "Cream":
-          cost = Beverage.CREAM_COST;
-          break;
-        case "Sugar":
-          cost = Beverage.SUGAR_COST;
-          break;
-        case "Water":
-          cost = 0;
-          break;
-        case "Chocolate":
-          cost = Beverage.CHOCOLATE_COST;
-          break;
-        case "Milk":
-          cost = Beverage.MILK_COST;
-          break;
-        default:
-          break;
-      }
-      cost = cost / 100;
-      System.out.println(i + 1 + ". " + curr + ". Cost per unit: " + cost + " (Press " + (i + 1) + " for " + curr
-          + " and space then the quantity you prefer)");
-    }
-    return ingredients;
+  private void displayIngredients() {
+    String ingredients = "1. Coffee. Cost per unit: 0.75 (Press 1 for Coffee and space then the quantity you prefer)\n" +
+            "2. Cream. Cost per unit: 0.25 (Press 2 for Cream and space then the quantity you prefer)\n" +
+            "3. Sugar. Cost per unit: 0.25 (Press 3 for Sugar and space then the quantity you prefer)\n" +
+            "4. Water. Cost per unit: 0.0 (Press 4 for Water and space then the quantity you prefer)";
+    System.out.println(ingredients);
   }
 
-  public ArrayList<String> getIngredients(String type) {
-    ArrayList<String> ingredients = new ArrayList<>();
-    switch (type) {
-      case AMERICANO:
-        ingredients = americano.getIngredients();
-        break;
-      case BLACK_COFFEE:
-        ingredients = blackCoffee.getIngredients();
-        break;
-      case CAFE_MOCHA:
-        ingredients = cafeMocha.getIngredients();
-        break;
-      default:
-        break;
-    }
-    return ingredients;
-  }
 }
 

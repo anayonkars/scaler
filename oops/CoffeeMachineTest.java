@@ -45,7 +45,7 @@ public class CoffeeMachineTest {
     }
 
     private static void shouldDispenseWithCorrectInput() {
-        InputStream inputStream = new ByteArrayInputStream("1\n1 1\n2 2\n3 3\nd".getBytes());
+        InputStream inputStream = new ByteArrayInputStream("1\nd".getBytes());
         OutputStream outputStream = new ByteArrayOutputStream();
         setupStreams(inputStream, outputStream);
         CoffeeMachine coffeeMachine = new CoffeeMachine();
@@ -54,7 +54,7 @@ public class CoffeeMachineTest {
         System.out.println(outputStream.toString());*/
         String result = outputStream.toString();
         assertTrue(result.contains("Dispensing..."));
-        assertTrue(result.contains("Please pay 2.0$"));
+        assertTrue(result.contains("Please pay 3.0$"));
         resetStreams();
         System.out.println("Test passed...");
     }
