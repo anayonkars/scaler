@@ -12,6 +12,7 @@ class Beverage {
   private final ArrayList<String> INGREDIENTS = new ArrayList<>();
 
   private final Map<Ingredient, Integer> recipe = new HashMap<>();
+  private String name;
 
   Beverage() {
     INGREDIENTS.add("Coffee");
@@ -19,6 +20,7 @@ class Beverage {
     INGREDIENTS.add("Sugar");
     INGREDIENTS.add("Water");
     Collections.sort(INGREDIENTS);
+    this.name = name;
     /*INGREDIENTS.add("Chocolate");
     INGREDIENTS.add("Milk");*/
   }
@@ -37,6 +39,7 @@ class Beverage {
     private int creamQuantity;
     private int milkQuantity;
     private int coffeeQuantity;
+    private String name;
 
     private BeverageBuilder() {
     }
@@ -65,12 +68,18 @@ class Beverage {
       return this;
     }
 
+    public BeverageBuilder withName(String name) {
+      this.name = name;
+      return this;
+    }
+
     public Beverage build() {
       Beverage beverage = new Beverage();
       beverage.recipe.put(Ingredient.SUGAR, sugarQuantity);
       beverage.recipe.put(Ingredient.MILK, milkQuantity);
       beverage.recipe.put(Ingredient.CREAM, creamQuantity);
       beverage.recipe.put(Ingredient.COFFEE, coffeeQuantity);
+      beverage.name = this.name;
       return beverage;
     }
   }
