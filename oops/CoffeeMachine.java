@@ -127,10 +127,12 @@ public class CoffeeMachine {
 
   private void displayMenu() {
     ArrayList<String> menu = this.menu;
-    for (int i = 0; i < menu.size(); i++) {
+    int i = 0;
+    for (; i < menu.size(); i++) {
       String curr = menu.get(i);
       System.out.println(i + 1 + ". " + curr + " (Press " + (i + 1) + " for " + curr + ")");
     }
+    System.out.println(i + 1 + ". " + "Custom" + " (Press " + (i + 1) + " for " + "Custom" + ")");
   }
 
   private ArrayList<String> displayIngredients(String type) {

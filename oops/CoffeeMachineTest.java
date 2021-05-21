@@ -55,6 +55,7 @@ public class CoffeeMachineTest {
         String expected = "1. Americano (Press 1 for Americano)\r\n" +
                 "2. Black Coffee (Press 2 for Black Coffee)\r\n" +
                 "3. Cafe Mocha (Press 3 for Cafe Mocha)\r\n" +
+                "4. Custom (Press 4 for Custom)\r\n" +
                 "You selected Americano\r\n" +
                 "Please select ingredients.\r\n" +
                 "Press Q/q to quit, D/d to dispense, R/r to restock\r\n" +
