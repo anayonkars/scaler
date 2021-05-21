@@ -10,30 +10,13 @@ class Beverage {
   private final ArrayList<String> INGREDIENTS = new ArrayList<>();
 
   Beverage(int A, int B, int C, int D) {
-    for (int i = 1; i <= 4; i++) {
-      switch (i) {
-        case 1:
-          INGREDIENTS.add("Coffee");
-          break;
-        case 2:
-          INGREDIENTS.add("Cream");
-          break;
-        case 3:
-          INGREDIENTS.add("Sugar");
-          break;
-        case 4:
-          INGREDIENTS.add("Water");
-          break;
-        case 5:
-          INGREDIENTS.add("Chocolate");
-          break;
-        case 6:
-          INGREDIENTS.add("Milk");
-          break;
-        default:
-          break;
-      }
-    }
+    INGREDIENTS.add("Coffee");
+    INGREDIENTS.add("Cream");
+    INGREDIENTS.add("Sugar");
+    INGREDIENTS.add("Water");
+    Collections.sort(INGREDIENTS);
+    /*INGREDIENTS.add("Chocolate");
+    INGREDIENTS.add("Milk");*/
   }
 
   public int getSugarCost() {
@@ -57,7 +40,6 @@ class Beverage {
   }
 
   public ArrayList<String> getIngredients() {
-    Collections.sort(INGREDIENTS);
     return INGREDIENTS;
   }
 }
