@@ -25,6 +25,10 @@ class Beverage {
     INGREDIENTS.add("Milk");*/
   }
 
+  public String getName() {
+    return name;
+  }
+
   @Override
   public String toString() {
     return "Beverage{" +

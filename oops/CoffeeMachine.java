@@ -3,7 +3,7 @@ import java.util.List;
 import java.util.Scanner;
 
 public class CoffeeMachine {
-  private final List<String> menu = new ArrayList<>();
+  private final List<Beverage> menu = new ArrayList<>();
   private final Beverage americano;
   private final Beverage blackCoffee;
   private final Beverage cafeMocha;
@@ -40,10 +40,10 @@ public class CoffeeMachine {
   }
 
   {
-    menu.add(AMERICANO);
-    menu.add(BLACK_COFFEE);
-    menu.add(CAFE_MOCHA);
-    menu.add(CUSTOM);
+    menu.add(americano);
+    menu.add(blackCoffee);
+    menu.add(cafeMocha);
+    menu.add(custom);
   }
 
   public static final String AMERICANO = "Americano";
@@ -54,9 +54,9 @@ public class CoffeeMachine {
     Scanner scannerObj = new Scanner(System.in);
     displayMenu();
     int selectedCoffee = scannerObj.nextInt();
-    List<String> menu = this.menu;
+    List<Beverage> menu = this.menu;
     String coffeeToDispense = "";
-    coffeeToDispense = menu.get(selectedCoffee - 1);
+    coffeeToDispense = menu.get(selectedCoffee - 1).getName();
 
     System.out.println("You selected " + coffeeToDispense);
     System.out.println("Please select ingredients.");
@@ -149,10 +149,10 @@ public class CoffeeMachine {
   }
 
   private void displayMenu() {
-    List<String> menu = this.menu;
+    List<Beverage> menu = this.menu;
     int i = 0;
     for (; i < menu.size(); i++) {
-      String curr = menu.get(i);
+      String curr = menu.get(i).getName();
       System.out.println(i + 1 + ". " + curr + " (Press " + (i + 1) + " for " + curr + ")");
     }
   }
