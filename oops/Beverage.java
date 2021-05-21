@@ -11,10 +11,6 @@ class Beverage {
   public static final int CHOCOLATE_COST = 50;
   private final ArrayList<String> INGREDIENTS = new ArrayList<>();
 
-  private int sugarQuantity;
-  private int creamQuantity;
-  private int milkQuantity;
-  private int coffeeQuantity;
   private final Map<Ingredient, Integer> recipe = new HashMap<>();
 
   Beverage() {
@@ -29,22 +25,6 @@ class Beverage {
 
   public Map<Ingredient, Integer> getRecipe() {
     return recipe;
-  }
-
-  public int getSugarQuantity() {
-    return sugarQuantity;
-  }
-
-  public int getCreamQuantity() {
-    return creamQuantity;
-  }
-
-  public int getMilkQuantity() {
-    return milkQuantity;
-  }
-
-  public int getCoffeeQuantity() {
-    return coffeeQuantity;
   }
 
   public ArrayList<String> getIngredients() {
@@ -65,32 +45,28 @@ class Beverage {
       return new BeverageBuilder();
     }
 
-    public BeverageBuilder withSugarQuantity(int sugarQuantity) {
+    public BeverageBuilder withSugar(int sugarQuantity) {
       this.sugarQuantity = sugarQuantity;
       return this;
     }
 
-    public BeverageBuilder withCreamQuantity(int creamQuantity) {
+    public BeverageBuilder withCream(int creamQuantity) {
       this.creamQuantity = creamQuantity;
       return this;
     }
 
-    public BeverageBuilder withMilkQuantity(int milkQuantity) {
+    public BeverageBuilder withMilk(int milkQuantity) {
       this.milkQuantity = milkQuantity;
       return this;
     }
 
-    public BeverageBuilder withCoffeeQuantity(int coffeeQuantity) {
+    public BeverageBuilder withCoffee(int coffeeQuantity) {
       this.coffeeQuantity = coffeeQuantity;
       return this;
     }
 
     public Beverage build() {
       Beverage beverage = new Beverage();
-      beverage.sugarQuantity = this.sugarQuantity;
-      beverage.milkQuantity = this.milkQuantity;
-      beverage.creamQuantity = this.creamQuantity;
-      beverage.coffeeQuantity = this.coffeeQuantity;
       beverage.recipe.put(Ingredient.SUGAR, sugarQuantity);
       beverage.recipe.put(Ingredient.MILK, milkQuantity);
       beverage.recipe.put(Ingredient.CREAM, creamQuantity);
