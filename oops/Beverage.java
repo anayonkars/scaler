@@ -19,26 +19,6 @@ class Beverage {
     INGREDIENTS.add("Milk");*/
   }
 
-  public int getSugarCost() {
-    return SUGAR_COST;
-  }
-
-  public int getCreamCost() {
-    return CREAM_COST;
-  }
-
-  public int getCoffeeCost() {
-    return COFFEE_COST;
-  }
-
-  public int getMilkCost() {
-    return MILK_COST;
-  }
-
-  public int getChocolateCost() {
-    return CHOCOLATE_COST;
-  }
-
   public ArrayList<String> getIngredients() {
     return INGREDIENTS;
   }
