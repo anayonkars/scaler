@@ -3,14 +3,15 @@ import java.util.Collections;
 import java.util.Scanner;
 
 public class CoffeeMachine {
-  public static void main(String args[]) {
+  private final ArrayList<String> menu = new ArrayList<>();
+  private final Beverage americano = new Beverage(1, 2, 3, 6);
+  private final Beverage blackCoffee = new Beverage(1, 2, 3, 4);
+  private final Beverage cafeMocha = new Beverage(1, 2, 3, 5);
+
+  public static void main(String[] args) {
     new CoffeeMachine().initialize();
   }
 
-  private ArrayList<String> menu = new ArrayList<>();
-  private Beverage americano = new Beverage(1, 2, 3, 6);
-  private Beverage blackCoffee = new Beverage(1, 2, 3, 4);
-  private Beverage cafeMocha = new Beverage(1, 2, 3, 5);
   public static final String AMERICANO = "Americano";
   public static final String BLACK_COFFEE = "Black Coffee";
   public static final String CAFE_MOCHA = "Cafe Mocha";
@@ -20,7 +21,7 @@ public class CoffeeMachine {
     displayMenu();
     int selectedCoffee = scannerObj.nextInt();
     ArrayList<String> menu = getMenu();
-    String coffeeToDispense = new String();
+    String coffeeToDispense = "";
     for (int i = 0; i < menu.size(); i++) {
       String curr = menu.get(i);
       if (selectedCoffee == i + 1) {
@@ -44,7 +45,7 @@ public class CoffeeMachine {
       switch (input) {
         case "Q":
         case "q":
-          isDispense = true;
+          isQuit = true;
           break;
         case "D":
         case "d":
@@ -82,7 +83,7 @@ public class CoffeeMachine {
         int selectedIngredient = Integer.valueOf(splitInput[0]);
         int selectedQuantity = Integer.valueOf(splitInput[1]);
         for (int j = 0; j < ingredients.size(); j++) {
-          String currIngr = new String();
+          String currIngr = "";
           if (selectedIngredient == j + 1) {
             currIngr = ingredients.get(j);
           }
@@ -114,7 +115,9 @@ public class CoffeeMachine {
       }
     }
 
-    System.out.println("Please pay " + totalCost / 100 + "$");
+    if (totalCost > 0) {
+      System.out.println("Please pay " + totalCost / 100 + "$");
+    }
     scannerObj.close();
   }
 
@@ -188,12 +191,12 @@ public class CoffeeMachine {
 }
 
 class Beverage {
-  private int sugarCost = 25;
-  private int creamCost = 25;
-  private int coffeeCost = 75;
-  private int milkCost = 50;
-  private int chocolateCost = 50;
-  private ArrayList<String> ingredients = new ArrayList<>();
+  private final int sugarCost = 25;
+  private final int creamCost = 25;
+  private final int coffeeCost = 75;
+  private final int milkCost = 50;
+  private final int chocolateCost = 50;
+  private final ArrayList<String> ingredients = new ArrayList<>();
 
   Beverage() {
   }

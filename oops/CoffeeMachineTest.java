@@ -7,6 +7,30 @@ public class CoffeeMachineTest {
 
     public static void main(String[] args) {
         shouldDispenseWithCorrectInput();
+        shouldNotDispenseWhenQuit();
+    }
+
+    private static void shouldNotDispenseWhenQuit() {
+        InputStream inputStream = new ByteArrayInputStream("1\nq".getBytes());
+        OutputStream outputStream = new ByteArrayOutputStream();
+        System.setIn(inputStream);
+        System.setOut(new PrintStream(outputStream));
+        CoffeeMachine coffeeMachine = new CoffeeMachine();
+        coffeeMachine.initialize();
+        String result = outputStream.toString();
+        assertFalse(result.contains("Dispensing..."));
+        assertFalse(result.contains("Please pay"));
+        assertTrue(result.contains("Quitting..."));
+    }
+
+    private static void assertTrue(boolean result) {
+        if (!result) {
+            throw new RuntimeException("Expected : " + !result + " ; Actual : " + result);
+        }
+    }
+
+    private static void assertFalse(boolean result) {
+        assertTrue(!result);
     }
 
     private static void shouldDispenseWithCorrectInput() {
