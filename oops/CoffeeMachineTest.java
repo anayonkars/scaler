@@ -13,14 +13,25 @@ public class CoffeeMachineTest {
     private static void shouldNotDispenseWhenQuit() {
         InputStream inputStream = new ByteArrayInputStream("1\nq".getBytes());
         OutputStream outputStream = new ByteArrayOutputStream();
-        System.setIn(inputStream);
-        System.setOut(new PrintStream(outputStream));
+        setupStreams(inputStream, outputStream);
         CoffeeMachine coffeeMachine = new CoffeeMachine();
         coffeeMachine.initialize();
         String result = outputStream.toString();
         assertFalse(result.contains("Dispensing..."));
         assertFalse(result.contains("Please pay"));
         assertTrue(result.contains("Quitting..."));
+        resetStreams();
+        System.out.println("Test passed...");
+    }
+
+    private static void resetStreams() {
+        System.setIn(INPUT_STREAM);
+        System.setOut(new PrintStream(OUTPUT_STREAM));
+    }
+
+    private static void setupStreams(InputStream inputStream, OutputStream outputStream) {
+        System.setIn(inputStream);
+        System.setOut(new PrintStream(outputStream));
     }
 
     private static void assertTrue(boolean result) {
@@ -36,8 +47,7 @@ public class CoffeeMachineTest {
     private static void shouldDispenseWithCorrectInput() {
         InputStream inputStream = new ByteArrayInputStream("1\n1 1\n2 2\n3 3\nd".getBytes());
         OutputStream outputStream = new ByteArrayOutputStream();
-        System.setIn(inputStream);
-        System.setOut(new PrintStream(outputStream));
+        setupStreams(inputStream, outputStream);
         CoffeeMachine coffeeMachine = new CoffeeMachine();
         coffeeMachine.initialize();
         /*System.setOut(new PrintStream(OUTPUT_STREAM));
@@ -55,7 +65,8 @@ public class CoffeeMachineTest {
                 "Dispensing...\r\n" +
                 "Please pay 2.0$\r\n";
         assertTestResult(expected, outputStream.toString());
-
+        resetStreams();
+        System.out.println("Test passed...");
     }
 
     private static void assertTestResult(Object expected, Object actual) {
