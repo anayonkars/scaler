@@ -2,12 +2,12 @@ import java.util.ArrayList;
 import java.util.Collections;
 
 class Beverage {
-  private final int sugarCost = 25;
-  private final int creamCost = 25;
-  private final int coffeeCost = 75;
-  private final int milkCost = 50;
-  private final int chocolateCost = 50;
-  private final ArrayList<String> ingredients = new ArrayList<>();
+  private static final int SUGAR_COST = 25;
+  private static final int CREAM_COST = 25;
+  private static final int COFFEE_COST = 75;
+  private static final int MILK_COST = 50;
+  private static final int CHOCOLATE_COST = 50;
+  private final ArrayList<String> INGREDIENTS = new ArrayList<>();
 
   Beverage() {
   }
@@ -16,22 +16,22 @@ class Beverage {
     for (int i = 1; i <= 4; i++) {
       switch (i) {
         case 1:
-          ingredients.add("Coffee");
+          INGREDIENTS.add("Coffee");
           break;
         case 2:
-          ingredients.add("Cream");
+          INGREDIENTS.add("Cream");
           break;
         case 3:
-          ingredients.add("Sugar");
+          INGREDIENTS.add("Sugar");
           break;
         case 4:
-          ingredients.add("Water");
+          INGREDIENTS.add("Water");
           break;
         case 5:
-          ingredients.add("Chocolate");
+          INGREDIENTS.add("Chocolate");
           break;
         case 6:
-          ingredients.add("Milk");
+          INGREDIENTS.add("Milk");
           break;
         default:
           break;
@@ -40,27 +40,27 @@ class Beverage {
   }
 
   public int getSugarCost() {
-    return sugarCost;
+    return SUGAR_COST;
   }
 
   public int getCreamCost() {
-    return creamCost;
+    return CREAM_COST;
   }
 
   public int getCoffeeCost() {
-    return coffeeCost;
+    return COFFEE_COST;
   }
 
   public int getMilkCost() {
-    return milkCost;
+    return MILK_COST;
   }
 
   public int getChocolateCost() {
-    return chocolateCost;
+    return CHOCOLATE_COST;
   }
 
   public ArrayList<String> getIngredients() {
-    Collections.sort(ingredients);
-    return ingredients;
+    Collections.sort(INGREDIENTS);
+    return INGREDIENTS;
   }
 }
