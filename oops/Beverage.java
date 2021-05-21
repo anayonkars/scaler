@@ -9,6 +9,11 @@ class Beverage {
   public static final int CHOCOLATE_COST = 50;
   private final ArrayList<String> INGREDIENTS = new ArrayList<>();
 
+  private int sugarQuantity;
+  private int creamQuantity;
+  private int milkQuantity;
+  private int coffeeQuantity;
+
   Beverage() {
     INGREDIENTS.add("Coffee");
     INGREDIENTS.add("Cream");
@@ -21,5 +26,49 @@ class Beverage {
 
   public ArrayList<String> getIngredients() {
     return INGREDIENTS;
+  }
+
+
+  public static final class BeverageBuilder {
+    private int sugarQuantity;
+    private int creamQuantity;
+    private int milkQuantity;
+    private int coffeeQuantity;
+
+    private BeverageBuilder() {
+    }
+
+    public static BeverageBuilder aBeverage() {
+      return new BeverageBuilder();
+    }
+
+    public BeverageBuilder withSugarQuantity(int sugarQuantity) {
+      this.sugarQuantity = sugarQuantity;
+      return this;
+    }
+
+    public BeverageBuilder withCreamQuantity(int creamQuantity) {
+      this.creamQuantity = creamQuantity;
+      return this;
+    }
+
+    public BeverageBuilder withMilkQuantity(int milkQuantity) {
+      this.milkQuantity = milkQuantity;
+      return this;
+    }
+
+    public BeverageBuilder withCoffeeQuantity(int coffeeQuantity) {
+      this.coffeeQuantity = coffeeQuantity;
+      return this;
+    }
+
+    public Beverage build() {
+      Beverage beverage = new Beverage();
+      beverage.sugarQuantity = this.sugarQuantity;
+      beverage.milkQuantity = this.milkQuantity;
+      beverage.creamQuantity = this.creamQuantity;
+      beverage.coffeeQuantity = this.coffeeQuantity;
+      return beverage;
+    }
   }
 }
